@@ -18,7 +18,7 @@ sudo apt update && sudo apt install docker.io docker-compose -y
 
 echo "Activando el daemon automáticamente en el arranque"
 echo ""
-systemctl enable docker --now
+sudo systemctl enable docker --now
 
 echo "Agregando tu usuario al grupo docker para que pueda correr contenedores"
 echo ""
@@ -37,4 +37,4 @@ echo ""
 cd /docker/composefiles/ && sed 's/CAMBIAME-CARAJO/$plex_claim/g' docker-compose.yaml.template > /docker/composefiles/docker-compose.yaml && rm -f docker-compose.yaml.template
 
 echo "Inicializando los contenedores, a cruzar lo' dedo'..."
-cd /docker/composefiles && docker-compose up -d && echo "Lista de contenedores activos" && docker ps
+docker-compose up -d && echo "Lista de contenedores activos" && docker ps
