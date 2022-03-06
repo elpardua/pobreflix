@@ -26,8 +26,8 @@ sudo usermod -a -G docker $USER
 cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
 cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml.template
 
-find /Downloads -type d -exec chmod 755 {} +
-find /docker -type d -exec chmod 755 {} +
+find /Downloads -type d -exec chmod 775 {} +
+find /docker -type d -exec chmod 775 {} +
 
 cd /docker/composefiles/ && docker-compose up -d && echo "Lista de contenedores activos" && docker ps
 
