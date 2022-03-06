@@ -26,5 +26,5 @@ echo "Modificando config"
 echo ""
 sed -i 's/CAMBIAME-CARAJO/$plex_claim/g' ./docker-compose.yaml.template > /docker/composefiles/docker-compose.yaml
 echo "Inicializando los contenedores, a cruzar lo' dedo'..."
-docker-compose up -d && echo "Lista de contenedores activos" && docker ps
+cd /docker/composefiles && docker-compose up -d && echo "Lista de contenedores activos" && docker ps
 ~                                                                               
