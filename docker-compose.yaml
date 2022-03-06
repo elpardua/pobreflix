@@ -1,0 +1,101 @@
+version: "2.0" 
+services:
+  #Bazarr - Descarga automática de subtítulos.
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    restart: unless-stopped
+    environment:
+      PUID: 0
+      PGID: 0
+      TZ: America/Argentina/Buenos_Aires
+      UMASK_SET: 022
+    volumes:
+      - /docker/dockervolumes/bazarr/config:/config
+      - /Downloads/movies:/movies
+      - /Downloads/tv:/tv
+ 
+  #Radarr - Administración de Películas.
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    restart: unless-stopped
+    environment:
+      PUID: 0
+      PGID: 0
+      TZ: America/Argentina/Buenos_Aires
+      UMASK_SET: 022
+    volumes:
+      - /docker/dockervolumes/radarr/config:/config
+      - /Videos/movies:/movies
+      - /Downloads:/downloads
+
+  #Sonarr - Administración de Series.
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      PUID: 0
+      PGID: 0
+      TZ: America/Argentina/Buenos_Aires
+      UMASK_SET: 022
+    volumes:
+      - /docker/dockervolumes/sonarr/config:/config
+      - /Downloads:/downloads
+      
+  #Plex - Media Server.
+  plex:
+    image: plexinc/pms-docker:latest
+    container_name: plex
+    restart: unless-stopped
+    environment:
+      HOSTNAME: PlexServer
+      TZ: America/Argentina/Buenos_Aires
+      PLEX_CLAIM: CAMBIAME-CARAJO
+    volumes:
+      - /Downloads:/data
+      - /docker/plexpersistent:/config
+      - /docker/plextemp:/transcode
+    devices:
+      - /dev/dri:/dev/dri
+
+  #Jackett - API Gateway para búsquedas de Torrent.
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/Argentina/Buenos_Aires
+    volumes:
+      - /docker/dockervolumes/jackett/config:/config
+      - /Downloads:/downloads
+
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    restart: unless-stopped
+    environment:
+      PUID: 0
+      PGID: 0
+    volumes:
+      - /docker/dockervolumes/transmission:/config
+      - /Downloads:/downloads
+      - /Important/incomplete:/downloads/incomplete
+
+ ouroboros:                                                                                            
+    container_name: ouroboros                                                                                   
+    hostname: ouroboros                                                                                         
+    image: pyouroboros/ouroboros                                                                                
+    environment:                                                                                                
+     CLEANUP: "true"                                                                                            
+     INTERVAL: 300                                                                                              
+     LOG_LEVEL: info                                                                                            
+     SELF_UPDATE: "true"                                                                                        
+     TZ: America/Argentina/Buenos_Aires                                                                         
+    restart: unless-stopped                                                                                     
+    volumes:                                                                                                    
+      - /var/run/docker.sock:/var/run/docker.sock                                                               
+      - /docker/dockervolumes/db:/db           
