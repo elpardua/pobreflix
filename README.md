@@ -4,7 +4,7 @@
 Voy a tratar de hacer esta guía lo más al grano posible. Necesitás conocimientos supermínimos de linux, una pc vieja/notebook/tostadora más o menos decente, tipo core2duo, con 4gb de RAM para arriba está bien. Disco externo, o interno grande, mientras más grande, más contenidos en mejor calidad vas a poder poner. Como referencia, mi servidor de home lab que uso para otras cosas también tiene un I3 de 6ta Gen, 8GB de RAM, 512 de SSD para el sistema operativo y un disco externo USB 3.0 de 8TB, y está conectado por cable al modem de casa.
 
 ## Objetivo:
-Que termines esta guía con un server con varias aplicaciones web que te permitan agendar tus pelis y series favoritas, y que las mismas se busquen automágicamente en la calidad deseada, y una vez que estén disponibles, se descarguen automáticamente y te avise por telegram que ya podés verlas usando Plex. De paso, si no conocés docker, que aprendas un toque, que tampoco está mal.
+Que termines esta guía con un server con varias aplicaciones web que te permitan agendar tus pelis y series favoritas, y que las mismas se busquen automágicamente en la calidad deseada, y una vez que estén disponibles, se descarguen automáticamente y te avise por telegram que ya podés verlas usando Plex. De paso, si no conocés docker, que aprendas un toque, que tampoco está mal. Todos los componentes salvo el script y el archivo de compose, son propiedad de sus respectivos dueños, y siguen su licenciamiento original. Mi trabajo sólo está en tratar de automatizar lo más posible el deploy de este combo de contenedores. Los contenedores que usé están hachos por la gente hermosa de linuxserver.io, después péguenle una chusmeada, y pueden ampliar el archivo docker-compose.yaml con funcionalidades extra si así lo quisieran. (Home cloud, Biblioteca de Ebooks, GIT server, etc)
 
 Vas a necesitar crearte una cuenta en plex.tv. Pim pum, password, activás, si te ofrecen drogas o algo que haya que pagar: "no gracias, sólo vengo por lo grati'"
 
@@ -16,9 +16,9 @@ Voy a arrancar de un escenario básico suponiendo que a tu servidor le instalast
 
 server> sudo apt update && sudo apt upgrade -y && sudo reboot
 
-Si te pregunta algo, dale a todo que si, va a actualizar todo el sistema y reiniciar el servidor. Una vez que reinicie nos conectamos nuevamente por SSH.
+Esto va a actualizar todo el sistema y reiniciar el servidor. Una vez que reinicie nos conectamos nuevamente por SSH.
 
-2- Instalamos los paquetes necesarios:
+2- Instalamos git para poder bajar este repo:
 
 server> sudo apt install git
 
