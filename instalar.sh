@@ -10,7 +10,7 @@ sleep 3
 echo ""
 echo "Voy a instalar los requerimientos."
 echo ""
-apt update && apt install docker.io docker-compose git -y
+apt update && apt install docker.io docker-compose -y
 echo "Activando el daemon automáticamente en el arranque"
 echo ""
 systemctl enable docker --now
