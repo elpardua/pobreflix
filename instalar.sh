@@ -25,9 +25,8 @@ echo ""
 sudo usermod -a -G docker $USER
 mv docker-compose.yaml.template /docker/composefiles/docker-compose.yaml.template
 
-cd /docker/composefiles/ && sed 's/CAMBIAME-CARAJO/"${plex_claim}"'/g' docker-compose.yaml.template > /docker/composefiles/docker-compose.yaml && rm -f docker-compose.yaml.template
+cd /docker/composefiles/ && cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml && rm -f docker-compose.yaml.template
 
-echo "Inicializando los contenedores, a cruzar lo' dedo'..."
 docker-compose up -d && echo "Lista de contenedores activos" && docker ps
 
 echo "Te creaste ya una cuenta en plex.tv? Si no lo hiciste te espero. Dale enter si ya está hecho"
