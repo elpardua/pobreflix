@@ -23,7 +23,8 @@ sudo systemctl enable docker --now
 echo "Agregando tu usuario al grupo docker para que pueda correr contenedores"
 echo ""
 sudo usermod -a -G docker $USER
-mv docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
+cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
+cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml.template
 
 find /Downloads -type d -exec chmod 755 {} +
 find /docker -type d -exec chmod 755 {} +
@@ -39,4 +40,4 @@ read plex_claim
 echo "Modificando config"
 echo ""
 
-cd /docker/composefiles/ && sed 's/CAMBIAME-CARAJO/'"${plex_claim}"'/g' docker-compose.yaml > /docker/composefiles/docker-compose.yaml
+cd /docker/composefiles/ && sed 's/CAMBIAME-CARAJO/'"${plex_claim}"'/g' docker-compose.yaml.template > /docker/composefiles/docker-compose.yaml && docker-compose up -d
