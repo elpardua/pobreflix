@@ -25,6 +25,11 @@ echo ""
 sudo usermod -a -G docker $USER
 mv docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
 
+sudo chown -R $USER:$USER /Downloads
+sudo chown -R $USER:$USER /docker
+sudo chmod 660 -R /Downloads
+sudo chmod 660 -R /docker
+
 cd /docker/composefiles/ && docker-compose up -d && echo "Lista de contenedores activos" && docker ps
 
 echo "Te creaste ya una cuenta en plex.tv? Si no lo hiciste te espero. Dale enter si ya está hecho"
