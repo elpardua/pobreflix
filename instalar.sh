@@ -21,13 +21,13 @@ sudo systemctl enable docker --now
 echo "Agregando tu usuario al grupo docker para que pueda correr contenedores"
 echo ""
 sudo usermod -a -G docker $USER
-cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
-cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml.template
 
 sudo chown -R $USER:$USER /Downloads
 sudo chown -R $USER:$USER /docker
 find /Downloads -type d -exec chmod 775 {} +
 find /docker -type d -exec chmod 775 {} +
+cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
+cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml.template
 
 cd /docker/composefiles/ && docker-compose up -d && echo "Lista de contenedores activos" && docker ps
 
