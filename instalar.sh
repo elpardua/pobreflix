@@ -34,7 +34,7 @@ read plex_claim
 echo "Modificando config"
 echo ""
 
-cd /docker/composefiles/ && sed -i 's/CAMBIAME-CARAJO/$plex_claim/g' docker-compose.yaml.template > /docker/composefiles/docker-compose.yaml && rm -f docker-compose.yaml.template
+cd /docker/composefiles/ && sed 's/CAMBIAME-CARAJO/$plex_claim/g' docker-compose.yaml.template > /docker/composefiles/docker-compose.yaml && rm -f docker-compose.yaml.template
 
 echo "Inicializando los contenedores, a cruzar lo' dedo'..."
 cd /docker/composefiles && docker-compose up -d && echo "Lista de contenedores activos" && docker ps
