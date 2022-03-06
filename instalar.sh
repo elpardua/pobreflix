@@ -5,8 +5,6 @@ sudo mkdir -p /docker/dockervolumes
 sudo mkdir /docker/composefiles
 sudo mkdir /docker/pobreflix
 sudo mkdir /Downloads
-sudo chown -R $USER:$USER /Downloads
-sudo chown -R $USER:$USER /docker
 
 echo "Bienvenido al instalador de pobreflix, un combo loco de alegror automatizado... Banque un toque."
 sleep 3
@@ -26,6 +24,8 @@ sudo usermod -a -G docker $USER
 cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
 cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml.template
 
+sudo chown -R $USER:$USER /Downloads
+sudo chown -R $USER:$USER /docker
 find /Downloads -type d -exec chmod 775 {} +
 find /docker -type d -exec chmod 775 {} +
 
