@@ -23,11 +23,9 @@ sudo systemctl enable docker --now
 echo "Agregando tu usuario al grupo docker para que pueda correr contenedores"
 echo ""
 sudo usermod -a -G docker $USER
-mv docker-compose.yaml.template /docker/composefiles/docker-compose.yaml.template
+mv docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
 
-cd /docker/composefiles/ && cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml && rm -f docker-compose.yaml.template
-
-docker-compose up -d && echo "Lista de contenedores activos" && docker ps
+cd /docker/composefiles/ && docker-compose up -d && echo "Lista de contenedores activos" && docker ps
 
 echo "Te creaste ya una cuenta en plex.tv? Si no lo hiciste te espero. Dale enter si ya está hecho"
 read
@@ -38,4 +36,4 @@ read plex_claim
 echo "Modificando config"
 echo ""
 
-cd /docker/composefiles/ && sed 's/CAMBIAME-CARAJO/'"${plex_claim}"'/g' docker-compose.yaml.template > /docker/composefiles/docker-compose.yaml && rm -f docker-compose.yaml.template
+cd /docker/composefiles/ && sed 's/CAMBIAME-CARAJO/'"${plex_claim}"'/g' docker-compose.yaml > /docker/composefiles/docker-compose.yaml
