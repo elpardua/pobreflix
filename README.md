@@ -26,7 +26,7 @@ server> sudo apt install git
 
 server> git clone https://github.com/elpardua/pobreflix.git ~/pobreflix
 
-server> cd ~/pobreflix && chmod +x instalar.sh && sudo ./instalar.sh
+server> cd ~/pobreflix && chmod +x instalar.sh && ./instalar.sh
 
 4- Lo siguiente, requiere de cierta velocidad, porque plex te da un "Claim Code", que tiene que ponerse en el compose-file.yaml antes de arrancar el contenedor, y expira a los 4 minutos de generado. El instalador te va a pedir el Claim Code, pegálo y se encarga el sólo de editar el archivo y arrancar todo.
 
