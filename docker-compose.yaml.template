@@ -67,7 +67,14 @@ services:
       - /dev/dri:/dev/dri
     ports:
       - 32400:32400/tcp
-
+      - 32469:32469/tcp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+      - 1900:1900/udp
+      - 5353:5353/udp
+      
   #Jackett - API Gateway para búsquedas de Torrent.
   jackett:
     image: linuxserver/jackett
@@ -83,6 +90,7 @@ services:
     ports:
       - 9117:9117
 
+  #Transmission - Torrent Downloader
   transmission:
     image: linuxserver/transmission
     container_name: transmission
@@ -93,12 +101,28 @@ services:
     volumes:
       - /docker/dockervolumes/transmission:/config
       - /Downloads:/downloads
-      - /Important/incomplete:/downloads/incomplete
+      - /Downloads/incomplete:/downloads/incomplete
     ports:
       - 9091:9091/tcp
       - 51413:51413
-
- ouroboros:                                                                                            
+  
+  #Heimdall - Launcher web para derivar a todos los servicios levantados.
+  heimdall:
+    image: lscr.io/linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Argentina/Buenos_Aires
+    volumes:
+      - /docker/dockervolumes/heimdall:/config
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+  
+  #Ouroboros - Mantiene todos los contenedores actualizados.
+  ouroboros:                                                                                            
     container_name: ouroboros                                                                                   
     hostname: ouroboros                                                                                         
     image: pyouroboros/ouroboros                                                                                
