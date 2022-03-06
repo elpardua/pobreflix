@@ -14,6 +14,8 @@ services:
       - /docker/dockervolumes/bazarr/config:/config
       - /Downloads/movies:/movies
       - /Downloads/tv:/tv
+    ports:
+      - 6767:6767/tcp
  
   #Radarr - Administración de Películas.
   radarr:
@@ -29,6 +31,8 @@ services:
       - /docker/dockervolumes/radarr/config:/config
       - /Videos/movies:/movies
       - /Downloads:/downloads
+    ports:  
+      - 7878:7878/tcp
 
   #Sonarr - Administración de Series.
   sonarr:
@@ -43,6 +47,8 @@ services:
     volumes:
       - /docker/dockervolumes/sonarr/config:/config
       - /Downloads:/downloads
+    ports:
+      - 8989:8989/tcp
       
   #Plex - Media Server.
   plex:
@@ -59,6 +65,8 @@ services:
       - /docker/plextemp:/transcode
     devices:
       - /dev/dri:/dev/dri
+    ports:
+      - 32400:32400/tcp
 
   #Jackett - API Gateway para búsquedas de Torrent.
   jackett:
@@ -72,6 +80,8 @@ services:
     volumes:
       - /docker/dockervolumes/jackett/config:/config
       - /Downloads:/downloads
+    ports:
+      - 9117:9117
 
   transmission:
     image: linuxserver/transmission
@@ -84,6 +94,9 @@ services:
       - /docker/dockervolumes/transmission:/config
       - /Downloads:/downloads
       - /Important/incomplete:/downloads/incomplete
+    ports:
+      - 9091:9091/tcp
+      - 51413:51413
 
  ouroboros:                                                                                            
     container_name: ouroboros                                                                                   
