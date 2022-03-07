@@ -8,7 +8,7 @@ Que termines esta guía con un server con varias aplicaciones web que te permita
 
 Vas a necesitar crearte una cuenta en plex.tv. Pim pum, password, activás, si te ofrecen drogas o algo que haya que pagar: "no gracias, sólo vengo por lo grati'"
 
-Voy a arrancar de un escenario básico suponiendo que a tu servidor le instalaste ubuntu server, que es lo más simple y amigable, 3 giladas, siguiente siguiente siguiente y sale andando. NO INSTALES DOCKER POR DEFECTO. Vas a estar conectado con tu usuario que creaste durante la instalación, y que por defecto tiene permisos de sudoer (ejecutar cosas como si fueses root, usando tu clave personal). Las descargas por defecto van a ir en /Downloads, asi que aseguráte que haya espacio en ese disco, o si tenés un disco externo, usá ese path como punto de montaje.
+Voy a arrancar de un escenario básico suponiendo que a tu servidor le instalaste ubuntu server, que es lo más simple y amigable, 3 giladas, siguiente siguiente siguiente y sale andando. NO INSTALES DOCKER NI OTRO SERVER SNAP. Sólo activá el servidor de OpenSSH y una vez finalizada la instalación conectáte por SSH. Vas a estar conectado con tu usuario que creaste durante la instalación, y que por defecto tiene permisos de sudoer (ejecutar cosas como si fueses root, usando tu clave personal). Las descargas por defecto van a ir en /Downloads, asi que aseguráte que haya espacio en ese disco, o si tenés un disco externo, usá ese path como punto de montaje.
 
 ## Pasos a seguir:
 
@@ -18,17 +18,19 @@ server> sudo apt update && sudo apt upgrade -y && sudo reboot
 
 Esto va a actualizar todo el sistema y reiniciar el servidor. Una vez que reinicie nos conectamos nuevamente por SSH.
 
-2- Instalamos git para poder bajar este repo:
+2- Clonás este repo en tu home directory, y le das permisos de ejecución al script:
 
-server> sudo apt install git
+server> git clone https://github.com/elpardua/pobreflix.git ~/pobreflix && cd ~/pobreflix && chmod +x instalar.sh && ./instalar.sh
 
-3- Clonás este repo en tu home directory, y le das permisos de ejecución al script:
+El script va a instalar los requerimientos y activar los servicios para que corran automáticamente. Si tu usuario no está en el grupo "docker", lo va a agregar, y salir, indicando que te desconectes y te vuelvas a conectar por SSH para aplicar los nuevos permisos. Si eso sucede, ejecutás 
 
-server> git clone https://github.com/elpardua/pobreflix.git ~/pobreflix
+server> cd ~/pobreflix && ./instalar.sh
 
-server> cd ~/pobreflix && chmod +x instalar.sh && ./instalar.sh
+Y la instalación debería seguir su curso.
 
-4- Lo siguiente, requiere de cierta velocidad, porque plex te da un "Claim Code", que tiene que ponerse en el compose-file.yaml antes de arrancar el contenedor, y expira a los 4 minutos de generado. El instalador te va a pedir el Claim Code, pegálo y se encarga el sólo de editar el archivo y arrancar todo.
+3- El script te va a pedir un "Claim Code", que tiene que ponerse en el compose-file.yaml antes de arrancar el contenedor, se genera en https://plex.tv/claim y expira a los 4 minutos de generado. Si pasan esos 4 minutos, va a ser necesario ejecutarlo nuevamente para activar el plex.
+
+4- Al finalizar, te va a dar un listado de URLs de todos los servicios para hacer bookmarks en tu navegador favorito. Personalmente uso Heimdall como una página con todos los bookmarks, pero la idea de este script es que corra con la menor cantidad de recursos posibles.
 
 
 
