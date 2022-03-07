@@ -13,8 +13,7 @@ services:
       UMASK_SET: 022
     volumes:
       - /docker/dockervolumes/radarr/config:/config
-      - /Videos/movies:/movies
-      - /Downloads:/downloads
+      - /Downloads/movies:/movies
     ports:  
       - 7878:7878/tcp
 
@@ -30,7 +29,7 @@ services:
       UMASK_SET: 022
     volumes:
       - /docker/dockervolumes/sonarr/config:/config
-      - /Downloads:/downloads
+      - /Downloads/tv:/tv
     ports:
       - 8989:8989/tcp
       
@@ -87,7 +86,6 @@ services:
     volumes:
       - /docker/dockervolumes/transmission:/config
       - /Downloads:/downloads
-      - /Downloads/incomplete:/downloads/incomplete
     ports:
       - 9091:9091/tcp
       - 51413:51413
@@ -105,5 +103,4 @@ services:
      TZ: America/Argentina/Buenos_Aires                                                                         
     restart: unless-stopped                                                                                     
     volumes:                                                                                                    
-      - /var/run/docker.sock:/var/run/docker.sock                                                               
-      - /docker/dockervolumes/db:/db           
+      - /var/run/docker.sock:/var/run/docker.sock                                                                        
