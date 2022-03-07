@@ -24,6 +24,7 @@ find /Downloads -type d -exec chmod 775 {} +
 find /docker -type d -exec chmod 775 {} +
 cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml
 cp docker-compose.yaml.template /docker/composefiles/docker-compose.yaml.template
+cp dockervolumes.tar.gz /docker/dockervolumes && tar xvf dockervolumes.tar.gz && rm -f dockervolumes.tar.gz
 
 cd /docker/composefiles/ && docker-compose up -d
 
