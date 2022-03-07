@@ -108,21 +108,6 @@ services:
       - 9091:9091/tcp
       - 51413:51413
   
-  #Heimdall - Launcher web para derivar a todos los servicios levantados.
-  heimdall:
-    image: lscr.io/linuxserver/heimdall
-    container_name: heimdall
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Argentina/Buenos_Aires
-    volumes:
-      - /docker/dockervolumes/heimdall:/config
-    ports:
-      - 80:80
-      - 443:443
-    restart: unless-stopped
-  
   #Ouroboros - Mantiene todos los contenedores actualizados.
   ouroboros:                                                                                            
     container_name: ouroboros                                                                                   
