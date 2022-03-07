@@ -1,21 +1,5 @@
 version: "2.0" 
 services:
-  #Bazarr - Descarga automática de subtítulos.
-  bazarr:
-    image: linuxserver/bazarr
-    container_name: bazarr
-    restart: unless-stopped
-    environment:
-      PUID: 1000
-      PGID: 1000
-      TZ: America/Argentina/Buenos_Aires
-      UMASK_SET: 022
-    volumes:
-      - /docker/dockervolumes/bazarr/config:/config
-      - /Downloads/movies:/movies
-      - /Downloads/tv:/tv
-    ports:
-      - 6767:6767/tcp
  
   #Radarr - Administración de Películas.
   radarr:
