@@ -12,21 +12,17 @@ Voy a arrancar de un escenario básico suponiendo que a tu servidor le instalast
 
 ## Pasos a seguir:
 
-1- Vamos a actualizar todo nuestro server para que nos quede bien piola. En la consola ponemos:
+1- Vamos a actualizar todo nuestro server para que nos quede bien piola, crear el grupo docker y agregar tu usuario al mismo. En la consola ponemos:
 
-server> sudo apt update && sudo apt upgrade -y && sudo reboot
+server> sudo apt update && sudo apt upgrade -y && sudo groupadd docker && sudo usermod -a -G docker $USER && sudo reboot
 
 Esto va a actualizar todo el sistema y reiniciar el servidor. Una vez que reinicie nos conectamos nuevamente por SSH.
 
-2- Clonás este repo en tu home directory, y le das permisos de ejecución al script:
+2- Clonás este repo en tu home directory, le das permisos y ejecutás el script:
 
 server> git clone https://github.com/elpardua/pobreflix.git ~/pobreflix && cd ~/pobreflix && chmod +x instalar.sh && ./instalar.sh
 
-El script va a instalar los requerimientos y activar los servicios para que corran automáticamente. Si tu usuario no está en el grupo "docker", lo va a agregar, y salir, indicando que te desconectes y te vuelvas a conectar por SSH para aplicar los nuevos permisos. Si eso sucede, ejecutás 
-
-server> cd ~/pobreflix && ./instalar.sh
-
-Y la instalación debería seguir su curso.
+El script va a instalar los requerimientos y activar los servicios para que corran automáticamente. 
 
 3- El script te va a pedir un "Claim Code", que tiene que ponerse en el compose-file.yaml antes de arrancar el contenedor, se genera en https://plex.tv/claim y expira a los 4 minutos de generado. Si pasan esos 4 minutos, va a ser necesario ejecutarlo nuevamente para activar el plex.
 
