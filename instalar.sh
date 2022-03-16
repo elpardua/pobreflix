@@ -12,7 +12,7 @@ echo ""
 
 echo "Voy a instalar los requerimientos."
 echo ""
-sudo apt update && sudo apt install docker.io docker-compose -y
+sudo apt update && sudo apt install docker.io docker-compose make pipenv -y
 
 echo "Activando el daemon automáticamente en el arranque"
 echo ""
