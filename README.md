@@ -24,7 +24,7 @@ server> git clone https://github.com/elpardua/pobreflix.git ~/pobreflix && cd ~/
 
 El script va a instalar los requerimientos y activar los servicios para que corran automáticamente. 
 
-3- El script te va a pedir un "Claim Code", que tiene que ponerse en el compose-file.yaml antes de arrancar el contenedor, se genera en https://plex.tv/claim y expira a los 4 minutos de generado. Si pasan esos 4 minutos, va a ser necesario ejecutarlo nuevamente para activar el plex.
+3- Ahora te va a pedir un "Claim Code", lo generás en https://plex.tv/claim y expira a los 4 minutos de creado. Una vez que le pases este dato va a terminar de levantar toda la infra.
 
 4- Al finalizar, te va a dar un listado de URLs de todos los servicios para hacer bookmarks en tu navegador favorito. Personalmente uso Heimdall como una página con todos los bookmarks, pero la idea de este script es que corra con la menor cantidad de recursos posibles.
 
