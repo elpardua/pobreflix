@@ -40,3 +40,5 @@ echo ""
 jackettapi=$(grep "APIKey" /docker/dockervolumes/jackett/config/Jackett/ServerConfig.json | awk '{print $2}' | tr -d '"' | tr -d ',')
 
 cd /docker/composefiles/ && sed 's/CAMBIAME-CARAJO/'"${plex_claim}"'/g' docker-compose.yaml.template > /docker/composefiles/docker-compose.yaml && docker-compose up -d
+
+cd /docker && git clone https://github.com/Guilhem23/Jackett_Indexerr.git && cd Jackett_Indexer && make pipenv-install && make run
